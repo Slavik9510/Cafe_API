@@ -361,3 +361,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Manually added
+diagrams/
+/Cafe_API/appsettings.json
+/Cafe_API/Infrastructure/Seed/foodItems.json
+/Cafe_API/Infrastructure/Seed/food.json
