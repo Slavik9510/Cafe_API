@@ -1,0 +1,35 @@
+$primary-color: #d51116;
+.navbar {
+  width: 100vw;
+  height: 17.1vh;
+  background-color: $primary-color;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  padding: 0 1.9rem;
+}
+
+.img-wrapper {
+  width: 110px;
+  height: 110px;
+  margin: 0.3rem 0;
+}
+
+.navbar-links {
+  list-style-type: none;
+  padding-left: 0rem;
+  .navbar-links__item {
+    float: left;
+    padding-left: 1.5rem;
+    a {
+      text-decoration: none;
+      color: white;
+      vertical-align: bottom;
+    }
+  }
+}

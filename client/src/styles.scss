@@ -1,0 +1,13 @@
+@import url("https://fonts.cdnfonts.com/css/gilroy-bold");
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Gilroy-Medium", sans-serif;
+}
+
+.img-wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+}
