@@ -1,0 +1,22 @@
+$font-size-small: 0.8rem;
+
+.category-container {
+  text-align: center;
+}
+
+.category-img {
+  margin-bottom: 0.7rem;
+  img {
+    width: 3.5vw;
+  }
+}
+
+.category-title {
+  margin: 0;
+  font-size: $font-size-small;
+  font-weight: bold;
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}
