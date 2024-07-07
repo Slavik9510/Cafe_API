@@ -1,4 +1,4 @@
-$font-size-small: 0.8rem;
+$font-size-category-title: 0.8rem;
 
 .category-container {
   text-align: center;
@@ -8,15 +8,28 @@ $font-size-small: 0.8rem;
   margin-bottom: 0.7rem;
   img {
     width: 3.5vw;
+    transition: transform 0.3s ease-in-out;
+    &:hover {
+      transform: scale(0.9);
+    }
   }
 }
 
 .category-title {
   margin: 0;
-  font-size: $font-size-small;
+  font-size: $font-size-category-title;
   font-weight: bold;
   a {
     text-decoration: none;
     color: black;
+  }
+}
+
+@keyframes shrink {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.9);
   }
 }

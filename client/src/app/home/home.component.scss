@@ -1,0 +1,26 @@
+@import "variables";
+
+.bottom-info {
+  color: #808080;
+  p {
+    line-height: 27px;
+    font-weight: 400;
+    font-size: 1em;
+  }
+  a {
+    color: $primary-color;
+    text-decoration: none;
+  }
+  h2 {
+    font-weight: 400;
+    font-size: 2em;
+    color: #1e1d23;
+  }
+}
+
+.frequently-bought__title {
+  font-size: 43px;
+  font-weight: bold;
+  color: #1e1d23;
+  text-align: center;
+}

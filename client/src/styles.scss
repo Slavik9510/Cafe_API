@@ -3,11 +3,18 @@
 
 * {
   box-sizing: border-box;
+  outline: none;
 }
 
 body {
   font-family: "Gilroy-Medium", sans-serif;
   margin: 0;
+  color: #b0b0b0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
 }
 
 .img-container {
@@ -25,4 +32,15 @@ body {
 
 .required {
   color: #e2401c;
+}
+
+.dropdown {
+  z-index: 9999;
+  position: relative;
+}
+
+.horizontal-separatop {
+  width: 100%;
+  border-top: solid 0.8px #303030;
+  display: inline-block;
 }

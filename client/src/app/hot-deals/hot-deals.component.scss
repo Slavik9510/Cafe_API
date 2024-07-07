@@ -1,0 +1,43 @@
+@import "variables";
+
+.hot-deals {
+  display: flex;
+  width: 100vw;
+  max-width: 100%;
+  margin-top: 4.375rem;
+}
+
+.hot-deals__set-randevu,
+.hot-deals__set-shanhai {
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 50%;
+  padding-top: 37.5%;
+  position: relative;
+
+  button {
+    position: absolute;
+    top: 75%;
+    left: 5%;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 1.25rem 2.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $primary-color;
+    }
+  }
+}
+
+.hot-deals__set-randevu {
+  background-image: url("..//..//assets/images/hot-deals/set_randevu.png");
+}
+
+.hot-deals__set-shanhai {
+  background-image: url("..//..//assets/images/hot-deals/set_shanhai.png");
+}
