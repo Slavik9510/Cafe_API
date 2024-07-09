@@ -9,6 +9,7 @@ $font-size-category-title: 0.8rem;
   img {
     width: 3.5vw;
     transition: transform 0.3s ease-in-out;
+    cursor: pointer;
     &:hover {
       transform: scale(0.9);
     }
@@ -22,6 +23,7 @@ $font-size-category-title: 0.8rem;
   a {
     text-decoration: none;
     color: black;
+    cursor: pointer;
   }
 }
 

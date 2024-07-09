@@ -1,0 +1,122 @@
+@import "variables";
+
+.product-card {
+  width: 33%;
+  border: 1px #e5e5e5 solid;
+  border-radius: 30px;
+  font-size: 15px;
+  position: relative;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+
+  &:hover {
+    .product-img {
+      img {
+        transform: scale(1.3);
+      }
+    }
+  }
+}
+
+.product-img {
+  text-align: center;
+  margin: 2.5rem 0;
+  img {
+    width: 74%; //368px
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+}
+
+.product-description {
+  padding: 0 15px;
+  margin-bottom: 1rem;
+  .title {
+    font-size: 0.93em;
+    cursor: pointer;
+    &:hover {
+      color: $hover-color;
+    }
+  }
+
+  .weight,
+  .ingredients {
+    color: $font-color-dark-gray;
+  }
+
+  .ingredients {
+    font-size: 0.8em;
+    display: inline-block;
+    margin-bottom: 4.5em;
+  }
+}
+
+.price-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  .price {
+    color: $primary-color;
+    font-size: 0.93em;
+    font-weight: bold;
+  }
+
+  .add-to-cart {
+    display: inline-block;
+    text-align: center;
+    line-height: 40px;
+
+    color: white;
+    height: 40px;
+    width: 40px;
+    background-color: $primary-color;
+    border-radius: 16px;
+    cursor: pointer;
+    i {
+      vertical-align: middle;
+    }
+
+    &:hover {
+      background-color: $hover-color;
+    }
+  }
+}
+
+.variations {
+  display: flex;
+  flex-direction: column;
+  left: 50%;
+  align-items: center;
+
+  .variant-items {
+    padding: 0;
+    margin-bottom: 10px;
+    list-style-type: none;
+    display: flex;
+    li {
+      box-shadow: 0 0 0 1px $primary-color;
+      border-radius: 2px;
+      font-size: 0.8em;
+      padding: 0.5rem 0.6rem;
+      margin: 0.25rem;
+      cursor: pointer;
+      user-select: none;
+      &:hover {
+        box-shadow: 0 0 0 2px $primary-color;
+      }
+    }
+    li.selected {
+      box-shadow: 0 0 0 3px $primary-color;
+    }
+  }
+
+  a {
+    color: $primary-color;
+    cursor: pointer;
+    &:hover {
+      color: $hover-color;
+    }
+  }
+}

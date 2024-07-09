@@ -3,6 +3,7 @@
 a {
   text-decoration: none;
   color: $secondary-color;
+  cursor: pointer;
 }
 
 .navbar {
@@ -21,6 +22,7 @@ a {
 
 .brand-logo {
   width: 7.2vw;
+  cursor: pointer;
 }
 
 .primary-navigation {
@@ -46,8 +48,12 @@ a {
     padding: 0.6rem 0.7rem;
     display: inline-block;
     &:hover {
-      color: $font-color;
+      color: black;
     }
+  }
+
+  a.active {
+    color: black;
   }
 }
 
@@ -77,11 +83,14 @@ a {
     a {
       padding: 0.6rem 30px;
       display: block;
-      color: $font-color;
+      color: black;
     }
     &:hover {
       background-color: $dropdown-bg-color;
     }
+  }
+  .active-link {
+    background-color: $dropdown-bg-color;
   }
 }
 
@@ -128,7 +137,7 @@ a {
   text-align: left;
   a {
     font-size: $font-size-xsmall;
-    color: $font-color;
+    color: black;
     display: block;
     padding: 0.8rem 3rem;
   }

@@ -1,0 +1,73 @@
+@import "variables";
+
+.content {
+  width: 82vw;
+  margin: auto;
+  margin-bottom: 3rem;
+  font-size: 15px;
+  line-height: 27px;
+}
+
+p {
+  color: $font-color-dark-gray;
+  text-align: center;
+}
+a {
+  text-decoration: none;
+}
+
+strong {
+  color: black;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.quote {
+  i {
+    font-size: 60px;
+    color: $primary-color;
+  }
+  h5 {
+    display: inline-block;
+    margin: 0;
+    margin-left: 1rem;
+    vertical-align: top;
+    font-size: 1.13rem;
+  }
+  p {
+    margin-top: 0;
+  }
+}
+
+h3 {
+  font-size: 2em;
+  text-align: center;
+}
+
+h4 {
+  font-size: 1.6em;
+  text-align: center;
+}
+
+.opportunities {
+  h5 {
+    font-style: italic;
+    font-size: 1.5em;
+    color: black;
+    margin: 0;
+    margin-bottom: 0.8em;
+  }
+  p {
+    text-align: left;
+  }
+  li {
+    color: $font-color-dark-gray;
+  }
+}
+
+.container {
+  display: flex;
+}

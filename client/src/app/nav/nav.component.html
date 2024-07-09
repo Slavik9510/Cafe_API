@@ -2,33 +2,37 @@
     <div class="navbar-links__container">
         <div class="brand-logo">
             <div class="img-container">
-                <img src="../../assets/images/main-logo.png" alt="">
+                <img src="../../assets/images/main-logo.png" alt="" routerLink="">
             </div>
         </div>
         <div class="primary-navigation">
             <ul class="navbar-links">
                 <li class="navbar-links__item">
                     <div class=" dropdown about-us__dropdown-menu">
-                        <a href="#" class="about-us__dropbtn">Про нас<i class="fa-solid fa-chevron-down fa-xs"
-                                aria-hidden="true"></i></a>
+                        <a href="#" class="about-us__dropbtn"
+                            [ngClass]="{'active': isActiveRoute(['cooperation-franchise', 'news'])}">Про нас<i class="
+                            fa-solid fa-chevron-down fa-xs" aria-hidden="true"></i></a>
                         <div class="about-us__dropdown-content">
-                            <div class="about-us__dropdown-content--item">
-                                <a href="">Співпраця Франшиза</a>
+                            <div class="about-us__dropdown-content--item" routerLink="/cooperation-franchise"
+                                routerLinkActive="active-link">
+                                <a>Співпраця
+                                    Франшиза</a>
                             </div>
-                            <div class="about-us__dropdown-content--item">
-                                <a href="">Новини</a>
+                            <div class="about-us__dropdown-content--item" routerLink="/news"
+                                routerLinkActive="active-link">
+                                <a>Новини</a>
                             </div>
                         </div>
                     </div>
                 </li>
                 <li class="navbar-links__item">
-                    <a href="#">Акції</a>
+                    <a>Акції</a>
                 </li>
                 <li class="navbar-links__item">
-                    <a href="#">Оплата і доставка</a>
+                    <a>Оплата і доставка</a>
                 </li>
                 <li class="navbar-links__item">
-                    <a href="#">Контакти</a>
+                    <a>Контакти</a>
                 </li>
             </ul>
         </div>
@@ -40,22 +44,22 @@
                 </div>
                 <div class="location__dropdown-content">
                     <div class="location__dropdown-content--item">
-                        <a href="">Мукачево</a>
+                        <a>Мукачево</a>
                     </div>
                     <div class="location__dropdown-content--item">
-                        <a href="">Рівне</a>
+                        <a>Рівне</a>
                     </div>
                     <div class="location__dropdown-content--item">
-                        <a href="">Луцьк</a>
+                        <a>Луцьк</a>
                     </div>
                     <div class="location__dropdown-content--item">
-                        <a href="">Стрий</a>
+                        <a>Стрий</a>
                     </div>
                     <div class="location__dropdown-content--item">
-                        <a href="">Черкаси</a>
+                        <a>Черкаси</a>
                     </div>
                     <div class="location__dropdown-content--item">
-                        <a href="">Долина</a>
+                        <a>Долина</a>
                     </div>
                 </div>
             </div>
