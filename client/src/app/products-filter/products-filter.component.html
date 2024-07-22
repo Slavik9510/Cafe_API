@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="filters-panel">
+        <p class="result-length">Відображаються усі з {{products.length}} результатів</p>
+        <select name="orderby" class="orderby" (change)="orderBy($event)">
+            <!-- <option value="popularity">Сортувати за популярністю</option> -->
+            <option value="date" selected="selected">Сортувати за останніми</option>
+            <option value="price">Сортувати за ціною: від нижчої до вищої</option>
+            <option value="price-desc">Сортувати за ціною: від вищої до нижчої</option>
+        </select>
+    </div>
+    <app-products-list [products]="this.products"></app-products-list>
+</div>

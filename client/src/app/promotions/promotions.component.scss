@@ -1,0 +1,59 @@
+@import "variables";
+
+.container {
+  margin: 0 1rem;
+  margin-bottom: 4rem;
+}
+
+.promotion {
+  padding: 1.5rem 2.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.promo-meta {
+  font-size: 0.8rem;
+  color: #999999;
+
+  a {
+    cursor: pointer;
+    &:hover {
+      color: $hover-color;
+    }
+  }
+}
+
+.promo-title {
+  cursor: pointer;
+  &:hover {
+    color: $hover-color;
+  }
+}
+
+h2 {
+  font-size: 2em;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.meta-author {
+  color: black;
+}
+
+.promo-img {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.promo-content {
+  p,
+  ul {
+    color: $font-color-dark-gray;
+  }
+}
+
+.delivery-heading {
+  padding: 1em 0 0;
+}

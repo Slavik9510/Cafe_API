@@ -25,14 +25,14 @@
                         </div>
                     </div>
                 </li>
-                <li class="navbar-links__item">
-                    <a>Акції</a>
+                <li class="navbar-links__item" routerLink="/promotions">
+                    <a [ngClass]="{'active': isActiveRoute(['promotions'])}">Акції</a>
                 </li>
-                <li class="navbar-links__item">
-                    <a>Оплата і доставка</a>
+                <li class="navbar-links__item" routerLink="/payment-and-delivery">
+                    <a [ngClass]="{'active': isActiveRoute(['payment-and-delivery'])}">Оплата і доставка</a>
                 </li>
-                <li class="navbar-links__item">
-                    <a>Контакти</a>
+                <li class="navbar-links__item" routerLink="/contacts">
+                    <a [ngClass]="{'active': isActiveRoute(['contacts'])}">Контакти</a>
                 </li>
             </ul>
         </div>

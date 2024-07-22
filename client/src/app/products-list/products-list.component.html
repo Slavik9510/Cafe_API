@@ -1,24 +1,4 @@
-<div class="product-card" *ngFor="let product of products">
-    <div class="product-img">
-        <img src="{{product.imageUrl}}" alt="">
-    </div>
-    <div class="product-description">
-        <h3 class="title">Піца Халапеньо</h3>
-        <p class="weight">330г/515г</p>
-        <span class="ingredients">
-            моцарела, бекон, в’ялені томати, кримська цибуля, перець халапеньйо, пармезан, соус bbq
-        </span>
-        <div class="price-container">
-            <span class="price">165₴</span>
-            <a class="add-to-cart"><i class="fa-solid fa-cart-shopping"></i></a>
-        </div>
-
-        <div class="variations" *ngIf="hasMultipleVariations(product)">
-            <ul class="variant-items" role="radiogroup">
-                <li (click)="selectVariant('25см')" [class.selected]="selectedVariant === '25см'">25см</li>
-                <li (click)="selectVariant('32см')" [class.selected]="selectedVariant === '32см'">32см</li>
-            </ul>
-            <a (click)="selectVariant('')">Очистити</a>
-        </div>
-    </div>
+<div class="products-list" [style.gap]="gapSize">
+    <app-product-card *ngFor="let product of products" [product]="product" [routerLink]="['/product', product.id]"
+        appScrollToTop></app-product-card>
 </div>

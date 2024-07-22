@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="main-info">
+        <div class="product-img">
+            <img src="https://kvadratsushi.com/wp-content/uploads/2024/04/pizza_halapenio.jpg" alt="">
+        </div>
+        <div class="product-description">
+            <h1>{{product.title}}</h1>
+            <p class="ingredients">{{product.ingredients}}</p>
+            <p class="price" [@blink]="priceFade" (@blink.done)="resetPrice()">{{currentPrice}}₴</p>
+
+            <div class="size-selector" *ngIf="hasMultipleVariations()">
+                <p class="size-label">Розмір</p>
+                <ul class="variant-items" role="radiogroup">
+                    <li *ngFor="let item of product.foodItems" (click)="selectVariant(item.id)"
+                        [class.selected]="selectedVariant === item.id">{{item.size}} см</li>
+                </ul>
+                <p class="reset"><a (click)="selectVariant(undefined)"><i class="fa-solid fa-arrows-rotate"></i>
+                        Очистити</a></p>
+            </div>
+
+            <div class="cart-settings">
+                <div class="quantity-selector">
+                    <button class="minus" (click)="decreaseQuantity()">-</button>
+                    <input type="number" class="quantity" name="quantity" value="1" aria-label="Кількість товару"
+                        size="4" min="1" max="" step="1" placeholder="" inputmode="numeric" autocomplete="off"
+                        [(ngModel)]="itemQuantity">
+                    <button class="plus" (click)="increaseQuantity()">+</button>
+                </div>
+                <button class="add-to-cart" [disabled]="selectedVariant===undefined"><i
+                        class="fa-solid fa-cart-shopping"></i> ДОДАТИ В КОШИК</button>
+                <button class="add-like"><i class="fa-solid fa-heart"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="additional-info" *ngIf="product.additionalInfo">
+        <h2>Додаткова інформація</h2>
+        <table class="attributes">
+            <tbody>
+                <tr *ngFor="let info of additionalInfoKeys">
+                    <th>
+                        <p>{{ info }}</p>
+                    </th>
+                    <td>
+                        <p> {{ product.additionalInfo[info] }}</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

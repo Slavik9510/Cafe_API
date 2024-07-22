@@ -5,6 +5,7 @@ import { TopPanelComponent } from './top-panel/top-panel.component';
 import { HotDealsComponent } from './hot-deals/hot-deals.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ import { FooterComponent } from './footer/footer.component';
     TopPanelComponent,
     HotDealsComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    NgxSpinnerModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

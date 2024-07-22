@@ -1,0 +1,27 @@
+<div class="product-card">
+    <div class="product-img">
+        <img src="{{this.imgUrl}}" alt="">
+    </div>
+    <div class="add-to-favorites">
+        <i class="fa-solid fa-heart"></i>
+    </div>
+    <div class="product-description">
+        <h3 class="title">{{product.title}}</h3>
+        <p class="weight" *ngIf="product.weightVariations">{{product.weightVariations}}</p>
+        <span class="ingredients">{{product.ingredients}}</span>
+        <p *ngIf="product.weightVariations === null" class="hidden">N/A</p>
+        <div class="price-container">
+            <span class="price" [@fadeOut]="priceFade" (@fadeOut.done)="priceFade=false">{{getSelectedPrice()}}₴</span>
+            <a class="add-to-cart"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+
+        <div class="variations" *ngIf="hasMultipleVariations()">
+            <ul class="variant-items" role="radiogroup">
+                <li *ngFor="let item of product.foodItems" (click)="selectVariant(item.id); $event.stopPropagation()"
+                    [class.selected]="selectedVariant === item.id">{{item.size}} см</li>
+            </ul>
+            <a (click)="selectVariant(undefined)"
+                [style.visibility]="selectedVariant===undefined ? 'hidden':'visible'">Очистити</a>
+        </div>
+    </div>
+</div>

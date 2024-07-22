@@ -25,7 +25,7 @@ namespace Cafe_API.Infrastructure.Seed
 
             foreach (var food in foods)
             {
-                var additionalInfos = food.AdditionalInfos;
+                var additionalInfos = food.AdditionalInfo;
                 foreach (var current in additionalInfos)
                 {
                     current.Id = 0;

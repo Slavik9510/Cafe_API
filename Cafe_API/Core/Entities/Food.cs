@@ -9,7 +9,7 @@
         public DateTime CreationDate { get; set; }
 
         // Navigation properties
-        public ICollection<FoodAdditionalInfo> AdditionalInfos { get; set; }
+        public ICollection<FoodAdditionalInfo> AdditionalInfo { get; set; }
         public ICollection<FoodItem> FoodItems { get; set; }
     }
 }

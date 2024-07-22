@@ -1,8 +1,10 @@
+import { FoodItem } from "./product.model";
+
 export interface ProductCard {
     id: number;
-    imageUrl: string;
     title: string;
-    weightVariations: string;
+    weightVariations: string | undefined;
     ingredients: string;
-    priceVariations: { [key: number]: number };
+    creationDate: Date;
+    foodItems: FoodItem[];
 }

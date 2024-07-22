@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, NavigationEnd, Router } from '@angular/router';
+import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { NgClass } from '@angular/common';
 
 @Component({

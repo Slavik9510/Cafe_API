@@ -1,0 +1,30 @@
+@import "variables";
+
+.container {
+  margin: 0 0.3rem;
+}
+
+.filters-panel {
+  margin: 0 0.5rem 1.5rem 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.result-length {
+  font-size: 0.9rem;
+  color: $font-color-dark-gray;
+}
+
+.orderby {
+  background-color: #fbf7e8;
+  border-radius: 4px;
+  border: none;
+  line-height: 1.8;
+  padding: 1.1rem 1.75rem 1.1rem 1.2rem;
+  font-size: 14px;
+  appearance: none;
+  background-image: url("../../assets/images/select_arrow.png");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 15px) center;
+}

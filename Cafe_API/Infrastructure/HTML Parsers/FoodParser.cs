@@ -118,7 +118,7 @@ namespace Cafe_API.Infrastructure.HTML_Parsers
                 Title = title,
                 Category = category,
                 Ingredients = ingredients != null ? new HashSetStringConverter().ConvertFromProviderExpression.Compile()(ingredients) : null,
-                AdditionalInfos = DictionaryToFoodAdditionalInfoConverter.Convert(foodId, attributes)
+                AdditionalInfo = DictionaryToFoodAdditionalInfoConverter.Convert(foodId, attributes)
             };
 
             return food;
