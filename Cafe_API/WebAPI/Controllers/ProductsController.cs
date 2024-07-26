@@ -55,6 +55,9 @@ namespace Cafe_API.WebAPI.Controllers
             var products = await _foodRepository
                 .GetFoodWithVariationsAsync(x => true);
 
+            if (quantity > products.Count())
+                return BadRequest($"Quantity is too large, max possible is {products.Count()}");
+
             var dto = _mapper.Map<IEnumerable<FoodDto>>(products.Take(quantity));
 
             return Ok(dto);
@@ -65,7 +68,50 @@ namespace Cafe_API.WebAPI.Controllers
         {
             var product = await _foodRepository.GetFoodWithVariationsByIdAsync(id);
 
-            return Ok(_mapper.Map<FoodDetailsDto>(product));
+            var neighbours = await _foodRepository.FindAsync(x => x.Id == id - 1 || x.Id == id + 1);
+
+            var dto = _mapper.Map<FoodDetailsDto>(product);
+
+            foreach (var neighbour in neighbours)
+            {
+                if (neighbour.Category != product.Category)
+                {
+                    dto.NeighbourItems.Add(null);
+                    continue;
+                }
+                var foodFullInfo = await _foodRepository.GetFoodWithVariationsByIdAsync(neighbour.Id);
+
+                dto.NeighbourItems.Add(new FoodNavigationDto
+                {
+                    Id = foodFullInfo.Id,
+                    Price = foodFullInfo.FoodItems.Min(x => x.Price),
+                    Title = foodFullInfo.Title
+                });
+            }
+
+            return Ok(dto);
+        }
+
+        [HttpGet("similar")]
+        public async Task<IActionResult> GetSimilarProducts(int id, int quantity)
+        {
+            var product = await _foodRepository.GetByIdAsync(id);
+            var others = await _foodRepository.FindAsync(x => x.Id != id && x.Category == product.Category);
+
+            if (quantity > others.Count())
+                return BadRequest($"Quantity is too large, max possible is {others.Count()}");
+
+            others = others.OrderBy(x => x.Ingredients.Intersect(product.Ingredients).Count()).Take(quantity);
+
+            var dtos = new List<FoodDto>();
+
+            foreach (var current in others)
+            {
+                var foodWithVariations = await _foodRepository.GetFoodWithVariationsByIdAsync(current.Id);
+                dtos.Add(_mapper.Map<FoodDto>(foodWithVariations));
+            }
+
+            return Ok(dtos);
         }
     }
 }

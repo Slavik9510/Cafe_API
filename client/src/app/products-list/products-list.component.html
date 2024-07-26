@@ -1,4 +1,4 @@
-<div class="products-list" [style.gap]="gapSize">
+<div class="products-list" [style.gap]="gapSize" [ngClass]="columns == 3 ? 'col-3' : 'col-4'">
     <app-product-card *ngFor="let product of products" [product]="product" [routerLink]="['/product', product.id]"
         appScrollToTop></app-product-card>
 </div>

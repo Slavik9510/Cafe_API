@@ -20,7 +20,7 @@
                 <li *ngFor="let item of product.foodItems" (click)="selectVariant(item.id); $event.stopPropagation()"
                     [class.selected]="selectedVariant === item.id">{{item.size}} см</li>
             </ul>
-            <a (click)="selectVariant(undefined)"
+            <a (click)="selectVariant(undefined); $event.stopPropagation()"
                 [style.visibility]="selectedVariant===undefined ? 'hidden':'visible'">Очистити</a>
         </div>
     </div>

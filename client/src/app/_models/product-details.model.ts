@@ -1,3 +1,4 @@
+import { ProductNavigationCard } from "./product-navigation-card.model";
 import { FoodItem } from "./product.model";
 
 export interface ProductDetails {
@@ -8,4 +9,5 @@ export interface ProductDetails {
     weightVariations?: string;
     additionalInfo?: { [key: string]: string };
     foodItems: FoodItem[];
+    neighbourItems: (ProductNavigationCard | null)[];
 }

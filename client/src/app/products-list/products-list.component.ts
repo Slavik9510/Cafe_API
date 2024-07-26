@@ -20,4 +20,5 @@ import { ScrollToTopDirective } from '../_directives/scroll-to-top.directive';
 export class ProductsListComponent {
   @Input({ required: true }) products!: ProductCard[];
   @Input() gapSize: string = '10px';
+  @Input() columns: 3 | 4 = 3;
 }

@@ -9,5 +9,6 @@
         public string? WeightVariations { get; set; }
         public Dictionary<string, string>? AdditionalInfo { get; set; }
         public IEnumerable<FoodItemDto> FoodItems { get; set; }
+        public List<FoodNavigationDto?> NeighbourItems { get; set; } = new();
     }
 }

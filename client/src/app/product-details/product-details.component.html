@@ -1,3 +1,46 @@
+<div class="top-panel">
+    <div class="navigation">
+        <p>
+            <a>Головна </a>
+            <i class="fa-solid fa-angle-right fa-sm"></i>
+            <a> Піца </a>
+            <i class="fa-solid fa-angle-right fa-sm"></i>
+            <span class="current-title"> {{product.title}}</span>
+        </p>
+    </div>
+
+    <div class="items-navigation">
+        <div class="prev-item" (click)="routeToNeighbour(product.neighbourItems[0])" (mouseenter)="prevMouseEnter()"
+            (mouseleave)="prevMouseLeave()">
+            <a class="prev" [ngClass]="{'disabled-link': product.neighbourItems[0]===null}"><i
+                    class="fa-solid fa-angle-left fa-sm"></i></a>
+            <div class="items-dropdown" *ngIf="product.neighbourItems[0]!==null" [@flyInOut]="prevHover">
+                <div class="dropdown-content">
+                    <img src="https://kvadratsushi.com/wp-content/uploads/2024/04/pizza_halapenio.jpg" alt="">
+                    <div class="product-info">
+                        <span class="title">{{product.neighbourItems[0].title}}</span>
+                        <span class="price">{{product.neighbourItems[0].price}}₴</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="next-item" (click)="routeToNeighbour(product.neighbourItems[1])" (mouseenter)="nextMouseEnter()"
+            (mouseleave)="nextMouseLeave()">
+            <a class="next" [ngClass]="{'disabled-link': product.neighbourItems[1]===null}"><i
+                    class="fa-solid fa-angle-right fa-sm"></i></a>
+            <div class="items-dropdown" *ngIf="product.neighbourItems[1]!==null" [@flyInOut]="nextHover">
+                <div class="dropdown-content">
+                    <img src="https://kvadratsushi.com/wp-content/uploads/2024/04/pizza_halapenio.jpg" alt="">
+                    <div class="product-info">
+                        <span class="title">{{product.neighbourItems[1].title}}</span>
+                        <span class="price">{{product.neighbourItems[1].price}}₴</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container">
     <div class="main-info">
         <div class="product-img">
@@ -19,7 +62,7 @@
             </div>
 
             <div class="cart-settings">
-                <div class="quantity-selector">
+                <div class="quantity-selector" #addToCart>
                     <button class="minus" (click)="decreaseQuantity()">-</button>
                     <input type="number" class="quantity" name="quantity" value="1" aria-label="Кількість товару"
                         size="4" min="1" max="" step="1" placeholder="" inputmode="numeric" autocomplete="off"
@@ -47,4 +90,21 @@
             </tbody>
         </table>
     </div>
+    <div class="similar-products">
+        <h2>СХОЖІ ТОВАРИ</h2>
+        <app-products-list [products]="this.similarProducts!" [columns]="4"></app-products-list>
+    </div>
+</div>
+
+<div class="bottom-panel" #bottomPanel appScrollSpy [observableElement]="addToCart" [offset]="130"
+    [@flyInEnterLeave]="bottomPanel.style.visibility">
+    <div class="product-info">
+        <img src="https://kvadratsushi.com/wp-content/uploads/2024/04/pizza_halapenio.jpg" alt="">
+        <div class="selected-option">
+            <span class="title">Ви переглядаєте: <strong>{{product.title}}</strong></span>
+            <span class="price">{{currentPrice}}₴</span>
+        </div>
+    </div>
+    <a class="cta-btn" *ngIf="hasMultipleVariations()" (click)="scrollToOptions()">ОБЕРІТЬ ОПЦІЇ</a>
+    <a class="cta-btn" *ngIf="!hasMultipleVariations()">ДОДАТИ ДО КОШИКА</a>
 </div>

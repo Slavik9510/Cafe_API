@@ -65,4 +65,11 @@ export class ProductsService {
   getProductDetailsById(id: number) {
     return this.http.get<ProductDetails>(this.apiUrl + 'products/' + id);
   }
+
+  getSimilarProducts(id: number, quantity: number) {
+    let params = new HttpParams()
+      .set('id', id)
+      .set('quantity', quantity);
+    return this.http.get<ProductCard[]>(this.apiUrl + 'products/similar', { params });
+  }
 }
