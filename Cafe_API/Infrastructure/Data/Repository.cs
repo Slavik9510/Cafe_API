@@ -54,5 +54,10 @@ namespace Cafe_API.Infrastructure.Data
         {
             _dbSet.RemoveRange(entities);
         }
+
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }

@@ -26,5 +26,11 @@ namespace Cafe_API.Infrastructure.Data
                 .Where(f => f.Id == id).FirstOrDefaultAsync();
             return food;
         }
+
+        public async Task<FoodItem> GetFoodItemByIdAsync(int id)
+        {
+            var foodItem = await _context.FoodItems.FirstOrDefaultAsync(x => x.Id == id);
+            return foodItem;
+        }
     }
 }

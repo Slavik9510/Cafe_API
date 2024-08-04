@@ -46,7 +46,7 @@
         <div class="product-img">
             <img src="https://kvadratsushi.com/wp-content/uploads/2024/04/pizza_halapenio.jpg" alt="">
         </div>
-        <div class="product-description">
+        <div class="product-description" #productDescription>
             <h1>{{product.title}}</h1>
             <p class="ingredients">{{product.ingredients}}</p>
             <p class="price" [@blink]="priceFade" (@blink.done)="resetPrice()">{{currentPrice}}₴</p>
@@ -62,14 +62,14 @@
             </div>
 
             <div class="cart-settings">
-                <div class="quantity-selector" #addToCart>
+                <div class="quantity-selector">
                     <button class="minus" (click)="decreaseQuantity()">-</button>
                     <input type="number" class="quantity" name="quantity" value="1" aria-label="Кількість товару"
                         size="4" min="1" max="" step="1" placeholder="" inputmode="numeric" autocomplete="off"
                         [(ngModel)]="itemQuantity">
                     <button class="plus" (click)="increaseQuantity()">+</button>
                 </div>
-                <button class="add-to-cart" [disabled]="selectedVariant===undefined"><i
+                <button class="add-to-cart" [disabled]="selectedVariant===undefined" (click)="addToCart()"><i
                         class="fa-solid fa-cart-shopping"></i> ДОДАТИ В КОШИК</button>
                 <button class="add-like"><i class="fa-solid fa-heart"></i></button>
             </div>
@@ -96,7 +96,7 @@
     </div>
 </div>
 
-<div class="bottom-panel" #bottomPanel appScrollSpy [observableElement]="addToCart" [offset]="130"
+<div class="bottom-panel" #bottomPanel appScrollSpy [observableElement]="productDescription" [offset]="130"
     [@flyInEnterLeave]="bottomPanel.style.visibility">
     <div class="product-info">
         <img src="https://kvadratsushi.com/wp-content/uploads/2024/04/pizza_halapenio.jpg" alt="">

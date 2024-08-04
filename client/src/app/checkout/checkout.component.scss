@@ -1,0 +1,211 @@
+@import "variables";
+
+.container {
+  padding: 0 1rem;
+  margin-bottom: 4rem;
+}
+
+.login-form-toggle,
+.coupon-form-toggle {
+  .toggle {
+    background-color: $primary-color;
+    color: white;
+    padding: 1rem 1.5rem;
+    margin-bottom: 2rem;
+    border-left: 0.55rem solid rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+    p {
+      margin: 0;
+    }
+    a {
+      cursor: pointer;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+.login-form {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s ease;
+}
+
+.login-form-inner {
+  margin-bottom: 1.5rem;
+  form {
+    margin-bottom: 1rem;
+  }
+  p {
+    margin: 0;
+    margin-bottom: 1rem;
+    color: $font-color-dark-gray;
+    text-align: center;
+  }
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  input:not([type="checkbox"]) {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    line-height: 27px;
+    font-size: 1rem;
+    border: 1px solid $table-border;
+    border-radius: 8px;
+  }
+
+  button {
+    width: 100%;
+    color: white;
+    cursor: pointer;
+    background-color: $hover-color;
+    border: none;
+    border-radius: 8px;
+    padding: 1.25rem 2.8rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+  }
+}
+
+.login,
+.password {
+  display: inline-block;
+  width: 48%;
+  margin-bottom: 1rem;
+}
+
+.login {
+  margin-right: 3%;
+}
+
+.rememberme {
+  cursor: pointer;
+}
+
+.lost-password {
+  cursor: pointer;
+  color: $primary-color;
+  &:hover {
+    color: $hover-color;
+  }
+}
+
+.order-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+h3 {
+  font-size: 1.55rem;
+  margin: 0;
+  margin-bottom: 0.8rem;
+  line-height: 1.8;
+}
+p {
+  margin: 0;
+  margin-bottom: 0.8rem;
+}
+
+.order-form {
+  input.ng-dirty.ng-touched.ng-invalid {
+    box-shadow: inset 2px 0 0 #e2401c;
+  }
+  width: 55%;
+  > div {
+    margin-bottom: 1rem;
+  }
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    line-height: 27px;
+  }
+  input:not([type="checkbox"]),
+  select,
+  textarea {
+    font-family: inherit;
+    width: 100%;
+    color: $font-color-dark-gray;
+    font-size: 1rem;
+    padding: 0.7rem 1rem;
+    border: 1px solid $table-border;
+    border-radius: 8px;
+    line-height: 27px;
+    &:focus {
+      border-color: $primary-color;
+    }
+  }
+
+  input[type="checkbox"] {
+    margin: 0;
+    margin-right: 0.3rem;
+  }
+}
+
+.additional-info {
+  margin-top: 2rem;
+}
+
+.order-review {
+  width: 40%;
+  border: 6px solid $table-border;
+  padding: 0.625rem 0.31rem;
+  h3 {
+    text-align: center;
+  }
+}
+
+.order-review-table {
+  width: 100%;
+  .product-name > span {
+    color: $font-color-dark-gray;
+  }
+  .order-total-amount {
+    font-size: 1.5rem;
+    color: $primary-color;
+  }
+  tr {
+    td {
+      border-top: 1px solid $table-border;
+    }
+    th,
+    td {
+      line-height: 27px;
+      padding: 0.3rem 0;
+    }
+    th:first-child {
+      text-align: left;
+    }
+    td:nth-child(even),
+    th:nth-child(2) {
+      text-align: right;
+      font-weight: bold;
+    }
+  }
+}
+
+.place-order {
+  border-top: 1px solid $table-border;
+  padding-top: 1.5rem;
+  a {
+    color: $primary-color;
+  }
+  button {
+    font-size: 1rem;
+    padding: 1.25rem 2.8rem;
+    width: 100%;
+    border: none;
+    background-color: $hover-color;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+}

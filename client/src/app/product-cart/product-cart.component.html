@@ -1,0 +1,61 @@
+<div class="open-cart fa-container" #openCartButton (click)="openCart()">
+    <i class="fa-solid fa-basket-shopping"></i>
+    <i class="cart-size">{{getTotalItems()}}</i>
+</div>
+<div class="container" #shoppingCart>
+    <div class="backdrop" #backdrop (click)="closeCart()"></div>
+    <div class="shopping-cart">
+        <div class="cart-top">
+            <span>КОРЗИНА</span>
+            <a (click)="toggleCoupon()">У ВАС Є ПРОМОКОД?</a>
+        </div>
+        <div class="coupon" #coupon>
+            <div class="coupon-inner">
+                <p>Якщо у вас є промокод, застосуйте його нижче.</p>
+                <form class="coupon-form">
+                    <input type="text" name="coupon_code" placeholder="Промокод:" value="" appPlaceholderFade>
+                    <button type="submit" class="button" name="apply_coupon" value="Застосувати промокод">ЗАСТОСУВАТИ
+                        ПРОМОКОД</button>
+                </form>
+            </div>
+        </div>
+        <div class="cart-main">
+            <p *ngIf="cartItems.length===0" class="empty-cart">У корзині немає товарів.</p>
+            <div class="cart-item" *ngFor="let item of cartItems">
+                <div class="item-img">
+                    <img src="{{item.imgUrl!==null?item.imgUrl:templateImg}}" alt="">
+                </div>
+                <div class="product-details">
+                    <div class="cart-item__top">
+                        <span class="title">{{item.title}}</span>
+                        <span class="price">{{item.price}}₴</span>
+                    </div>
+                    <div class="cart-item__bottom">
+                        <div class="item-quantity-selector">
+                            <button class="minus" (click)="decreaseQuantity(item.foodItemId)">-</button>
+                            <input type="number" value="1" aria-label="Кількість товару" size="4" min="1" max=""
+                                step="1" placeholder="" inputmode="numeric" autocomplete="off"
+                                [(ngModel)]="item.quantity">
+                            <button class="plus" (click)="increaseQuantity(item.foodItemId)">+</button>
+                        </div>
+                        <a>Видалити</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cart-bottom">
+            <a class="place-order" routerLink="/checkout" (click)="closeCart()" appScrollToTop>
+                <span>Оформити замовлення - {{this.getOrderTotal()}} ₴</span>
+                <svg class="checkout-arrow" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px"
+                    viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+                    <line fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-miterlimit="10" x1="3" y1="12" x2="21" y2="12"></line>
+                    <polyline fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-miterlimit="10" points="15,6 21,12 15,18 "></polyline>
+                </svg>
+            </a>
+            <a class="close-cart fa-container" (click)="closeCart()"><i class="fa-solid fa-xmark"></i></a>
+        </div>
+    </div>
+</div>

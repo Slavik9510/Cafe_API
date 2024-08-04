@@ -9,6 +9,7 @@ import { PaymentDeliveryComponent } from './payment-delivery/payment-delivery.co
 import { ContactsComponent } from './contacts/contacts.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { productDetailsResolver } from './_resolvers/product-details.resolver';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const categories = [
     "sushi-and-rols",
@@ -44,4 +45,5 @@ export const routes: Routes = [
     { path: "payment-and-delivery", component: PaymentDeliveryComponent },
     { path: "contacts", component: ContactsComponent },
     { path: "product/:id", component: ProductDetailsComponent, resolve: { productDetails: productDetailsResolver } },
+    { path: "checkout", component: CheckoutComponent }
 ];

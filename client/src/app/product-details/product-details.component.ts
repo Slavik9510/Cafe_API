@@ -9,6 +9,8 @@ import { ProductCard } from '../_models/product-card.model';
 import { ProductsListComponent } from "../products-list/products-list.component";
 import { ScrollSpyDirective } from '../_directives/scroll-spy.directive';
 import { ProductNavigationCard } from '../_models/product-navigation-card.model';
+import { ProductCartService } from '../_services/product-cart.service';
+import { ProductCartItem } from '../_models/product-cart-item.model';
 
 @Component({
   selector: 'app-product-details',
@@ -64,13 +66,14 @@ export class ProductDetailsComponent implements OnInit {
   currentPrice!: number;
   similarProducts: ProductCard[] | undefined;
 
-  @ViewChild('addToCart') addToCart: ElementRef | undefined;
+  @ViewChild('productDescription') productDescription: ElementRef | undefined;
   @ViewChild('similarProductsElement') similarProductsElement!: ElementRef;
 
   prevHover: 'hover' | 'normal' = 'normal';
   nextHover: 'hover' | 'normal' = 'normal';
 
-  constructor(private route: ActivatedRoute, private productsService: ProductsService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private productsService: ProductsService,
+    private router: Router, private cartService: ProductCartService) { }
 
   ngOnInit(): void {
     this.route.data.subscribe(
@@ -128,14 +131,30 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   scrollToOptions(): void {
-    if (!this.addToCart) return;
+    if (!this.productDescription) return;
 
-    this.addToCart.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    this.productDescription.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
   routeToNeighbour(neighbour: ProductNavigationCard | null) {
     if (neighbour !== null)
       this.router.navigate(['/product', neighbour.id]);
+  }
+
+  addToCart() {
+    if (this.selectedVariant === undefined) {
+      console.error("Item not selected");
+      return;
+    }
+    const item: ProductCartItem = {
+      id: this.product.id,
+      foodItemId: this.selectedVariant,
+      price: this.product.foodItems.find(x => x.id === this.selectedVariant)!.price,
+      title: this.product.title,
+      imgUrl: null,
+      quantity: this.itemQuantity
+    };
+    this.cartService.addToCart(item);
   }
 
   prevMouseEnter() {

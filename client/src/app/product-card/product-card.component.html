@@ -12,7 +12,8 @@
         <p *ngIf="product.weightVariations === null" class="hidden">N/A</p>
         <div class="price-container">
             <span class="price" [@fadeOut]="priceFade" (@fadeOut.done)="priceFade=false">{{getSelectedPrice()}}₴</span>
-            <a class="add-to-cart"><i class="fa-solid fa-cart-shopping"></i></a>
+            <a class="add-to-cart" (click)="addToCart(); $event.stopPropagation()"><i
+                    class="fa-solid fa-cart-shopping"></i></a>
         </div>
 
         <div class="variations" *ngIf="hasMultipleVariations()">

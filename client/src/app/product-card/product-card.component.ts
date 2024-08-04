@@ -3,6 +3,8 @@ import { ProductCard } from '../_models/product-card.model';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
+import { ProductCartItem } from '../_models/product-cart-item.model';
+import { ProductCartService } from '../_services/product-cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -30,7 +32,7 @@ export class ProductCardComponent implements OnInit {
   selectedVariant: number | undefined;
   priceFade: boolean = false;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private cartService: ProductCartService) { }
 
   ngOnInit(): void {
     if (this.route.snapshot.url.length === 0) {
@@ -38,6 +40,7 @@ export class ProductCardComponent implements OnInit {
       return;
     }
     const category = this.route.snapshot.url[0].path;
+    this.selectedVariant = this.product.foodItems.at(0)?.id;
 
 
     switch (category) {
@@ -93,5 +96,21 @@ export class ProductCardComponent implements OnInit {
     }
 
     return this.product.foodItems[0].price;
+  }
+
+  addToCart() {
+    if (this.selectedVariant === undefined) {
+      console.error("Item not selected");
+      return;
+    }
+    const item: ProductCartItem = {
+      id: this.product.id,
+      foodItemId: this.selectedVariant,
+      price: this.product.foodItems.find(x => x.id === this.selectedVariant)!.price,
+      title: this.product.title,
+      imgUrl: null,
+      quantity: 1
+    };
+    this.cartService.addToCart(item);
   }
 }

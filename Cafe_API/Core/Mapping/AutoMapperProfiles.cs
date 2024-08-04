@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Cafe_API.Core.Entities;
 using Cafe_API.WebAPI.DTOs.Food;
+using Cafe_API.WebAPI.DTOs.Orders;
 
 namespace Cafe_API.Core.Mapping
 {
@@ -55,6 +56,22 @@ namespace Cafe_API.Core.Mapping
                             AdditionalInfo = context.Mapper.Map<Dictionary<string, string>>(food.AdditionalInfo)
                         };
                     });
+            CreateMap<OrderItemDto, OrderItem>().ReverseMap();
+
+            CreateMap<OrderDto, Order>()
+                .ConvertUsing((orderDto, order, context) =>
+                {
+                    var orderItems = context.Mapper.Map<ICollection<OrderItem>>(orderDto.Items);
+                    return new Order
+                    {
+                        AdditionalInfo = orderDto.AdditionalInfo,
+                        CreationTime = DateTime.Now,
+                        CustomerName = orderDto.CustomerName,
+                        Email = orderDto.Email,
+                        PhoneNumber = orderDto.PhoneNumber,
+                        Items = orderItems
+                    };
+                });
         }
     }
 }

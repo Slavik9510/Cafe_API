@@ -7,5 +7,7 @@ namespace Cafe_API.Core.Interfaces
     {
         public Task<IEnumerable<Food>> GetFoodWithVariationsAsync(Expression<Func<Food, bool>> predicate);
         public Task<Food> GetFoodWithVariationsByIdAsync(int id);
+
+        public Task<FoodItem> GetFoodItemByIdAsync(int id);
     }
 }

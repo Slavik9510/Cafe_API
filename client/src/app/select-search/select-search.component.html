@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="selected" #selected (click)="toggleDropdown()">
+        <span>{{getStringValue(selectedKey)}}</span>
+        <span class="triangle-dropdown">&#x25BE;</span>
+    </div>
+    <div class="dropdown" #dropdown>
+        <div class="search">
+            <input type="text" [(ngModel)]="searchFilter">
+        </div>
+        <div class="options" #options>
+            <div class="option" *ngFor="let key of getFilteredOptions()" (click)="selectOption(key)"
+                [class.selected-option]="key === selectedKey">
+                <span>{{getStringValue(key)}}</span>
+            </div>
+        </div>
+        <div class="empty" *ngIf="getFilteredOptions().length===0">
+            <span>Співпадінь не знайдено</span>
+        </div>
+    </div>
+</div>

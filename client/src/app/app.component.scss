@@ -1,1 +1,22 @@
+app-product-cart {
+  position: relative;
+  z-index: 50;
+}
 
+header,
+main,
+footer {
+  position: relative;
+}
+
+header {
+  z-index: 15;
+}
+
+main {
+  z-index: 10;
+}
+
+.footer {
+  z-index: 5;
+}
