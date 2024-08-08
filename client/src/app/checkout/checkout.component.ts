@@ -4,6 +4,9 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { ProductCartService } from '../_services/product-cart.service';
 import { ProductCartItem } from '../_models/product-cart-item.model';
 import { SelectSearchComponent } from '../select-search/select-search.component';
+import { OrdersService } from '../_services/orders.service';
+import { Order, OrderItem } from '../_models/order.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -20,7 +23,7 @@ export class CheckoutComponent implements OnInit {
 
   @ViewChild('login') loginDiv!: ElementRef;
 
-  constructor(private cartService: ProductCartService) {
+  constructor(private cartService: ProductCartService, private ordersService: OrdersService, private router: Router) {
     this.orderForm = new FormGroup({
       "name": new FormControl("", Validators.required),
       "phoneNumber": new FormControl("", Validators.required),
@@ -53,8 +56,29 @@ export class CheckoutComponent implements OnInit {
   getOrderTotal(): number {
     return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   }
+
   placeOrder() {
-    console.log(this.orderForm);
+    const orderItems: OrderItem[] = this.cartItems.map(item => ({
+      foodItemId: item.foodItemId,
+      quantity: item.quantity
+    }));
+
+    const order: Order = {
+      customerName: this.orderForm.get('name')?.value,
+      email: this.orderForm.get('email')?.value,
+      phoneNumber: this.orderForm.get('phoneNumber')?.value,
+      additionalInfo: this.orderForm.get('additionalInfo')?.value,
+      items: orderItems
+    };
+
+    this.ordersService.placeOrder(order).subscribe({
+      next: (response) => {
+        this.router.navigate(['']);
+      },
+      error: (error) => {
+        console.error('There was an error creating the order', error);
+      }
+    });
   }
 
   toggleLogin() {
@@ -66,7 +90,7 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  onCityChanged(data: string) {
-    console.log(data);
+  onCityChanged(city: string) {
+    this.orderForm.get('city')?.setValue(city);
   }
 }

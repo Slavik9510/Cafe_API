@@ -1,7 +1,7 @@
 <div class="navbar">
-    <div class="navbar-links__container">
-        <div class="brand-logo">
-            <div class="img-container">
+    <div class="navbar-links__container desktop">
+        <div class="brand-section">
+            <div class="brand-logo img-container">
                 <img src="../../assets/images/main-logo.png" alt="" routerLink="">
             </div>
         </div>
@@ -67,7 +67,9 @@
         <div class="contact-info">
             <div class="element-wrapper">
                 <div class="contact-list">
-                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <div class="phone-icon">
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                    </div>
                     <div class="contact-list__phone-numers">
                         <span>Телефонуйте та замовляйте:</span>
                         <p>
@@ -113,6 +115,83 @@
                         </a>
                         <span class="count">99</span>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-nav">
+        <div class="navbar-links__container mobile">
+            <div class="links-top">
+                <div class="menu-toggle" (click)="openMenu()">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <div class="brand-logo img-container">
+                    <img src="../../assets/images/main-logo.png" alt="" routerLink="">
+                </div>
+                <div class="phone-numbers">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="links-bottom">
+                <div class="location-container">
+                    <div class="location">
+                        <div class="choosen-location" (click)="toggleLocationsList()"
+                            [class.highlighted]="isListVisible">
+                            <span>Львів • Сокільники • Винники <i class="fa-solid fa-chevron-down fa-xs"
+                                    aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <div class="location-list" #locationList [class.show]="isListVisible">
+                            <div class="location-list__item">
+                                <span>Мукачево</span>
+                            </div>
+                            <div class="location-list__item">
+                                <span>Стрий</span>
+                            </div>
+                            <div class="location-list__item">
+                                <span>Черкаси</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="side-menu" #sideMenu>
+            <a class="close" (click)="closeMenu()">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+            <div class="mobile-navigation">
+                <div class="mobile-navigation__item">
+                    <a>Про нас</a>
+                    <button class="dropdown-toggle" (click)="toggleSubMenu()"> <i class="fa-solid fa-chevron-down fa-xs"
+                            aria-hidden="true" [class.rotated]="isRotated"></i></button>
+                    <ul class="sub-menu" #subMenu>
+                        <li>
+                            <a>Співпраця та Франшиза</a>
+                        </li>
+                        <li>
+                            <a>Новини</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mobile-navigation__item">
+                    <a>Акції</a>
+                </div>
+                <div class="mobile-navigation__item">
+                    <a>Оплата і доставка</a>
+                </div>
+                <div class="mobile-navigation__item">
+                    <a>Контакти</a>
+                </div>
+                <div class="mobile-navigation__item social-media">
+                    <a>
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a>
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
                 </div>
             </div>
         </div>
