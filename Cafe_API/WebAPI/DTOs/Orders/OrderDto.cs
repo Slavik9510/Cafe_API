@@ -9,7 +9,6 @@ namespace Cafe_API.WebAPI.DTOs.Orders
         [Required]
         public string PhoneNumber { get; set; }
         [EmailAddress]
-        [Required]
         public string? Email { get; set; }
         public string? AdditionalInfo { get; set; }
         [Required]

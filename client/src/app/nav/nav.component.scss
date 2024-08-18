@@ -261,6 +261,50 @@ a {
   width: 320px;
   text-align: left;
   font-size: $font-size-small;
+  button {
+    display: block;
+    width: 100%;
+    background-color: $primary-color;
+    border: 0px;
+    border-radius: 5px;
+    padding: 1rem;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
+.hide-dropdown {
+  display: none;
+}
+
+.account-dropdown__content.user-logged {
+  padding: 1rem 0;
+  a {
+    display: block;
+    color: black;
+    font-size: 0.9rem;
+    padding: 0.6rem 1.9rem;
+    &:hover {
+      background-color: $dropdown-bg-color;
+    }
+    &:last-of-type {
+      margin-bottom: 0.5rem;
+    }
+  }
+  .user-logged__title {
+    padding: 0 1.9rem;
+    padding-bottom: 0.6rem;
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-bottom: 1px solid $table-border;
+  }
+
+  button {
+    width: calc(100% - 3.8rem);
+    margin: auto;
+  }
 }
 
 .login-form {
@@ -278,17 +322,6 @@ a {
     border-radius: 5px;
     margin-bottom: 0.9rem;
     font-size: 0.9rem;
-  }
-  button {
-    display: block;
-    width: 100%;
-    background-color: $primary-color;
-    border: 0px;
-    border-radius: 5px;
-    padding: 1rem;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
   }
 }
 
@@ -323,6 +356,7 @@ a {
 }
 
 .location {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
   background-color: $secondary-color;
   display: inline-block;
   border-radius: 8px;
@@ -334,10 +368,6 @@ a {
   overflow: hidden;
   transition: max-height 0.5s ease;
 }
-
-// .location-list.show {
-//   max-height: 400px;
-// }
 
 .location-list__item,
 .choosen-location {
@@ -359,7 +389,6 @@ a {
 }
 
 .side-menu {
-  display: none;
   z-index: 100;
   position: fixed;
   width: 100%;

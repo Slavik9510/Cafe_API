@@ -12,7 +12,7 @@ namespace Cafe_API.WebAPI.DTOs.AppUser
         public string Email { get; set; }
 
         [Required]
-        [StringLength(8, MinimumLength = 4)]
+        [StringLength(16, MinimumLength = 6)]
         public string Password { get; set; }
     }
 }

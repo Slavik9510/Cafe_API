@@ -10,6 +10,7 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { productDetailsResolver } from './_resolvers/product-details.resolver';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { AccountComponent } from './account/account.component';
 
 const categories = [
     "sushi-and-rols",
@@ -40,6 +41,7 @@ export const routes: Routes = [
     { path: "cooperation-franchise", component: CooperationFranchiseComponent },
     ...categoryRoutes,
     { path: "", component: HomeComponent },
+    { path: "account", component: AccountComponent },
     { path: "news", component: NewsComponent },
     { path: "promotions", component: PromotionsComponent },
     { path: "payment-and-delivery", component: PaymentDeliveryComponent },

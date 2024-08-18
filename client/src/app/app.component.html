@@ -1,7 +1,7 @@
 <ngx-spinner type="line-scale-party">
   <h3>Loading...</h3>
 </ngx-spinner>
-<app-product-cart *ngIf="!checkoutOpen()"></app-product-cart>
+<app-product-cart *ngIf="!isCheckoutOpen()"></app-product-cart>
 
 <header>
   <nav>
@@ -10,9 +10,10 @@
 </header>
 <main>
   <app-top-panel></app-top-panel>
-  <div style="margin-top: 4.375rem;">
+  <div style="margin-top: 4.375rem; margin-bottom: 2rem;">
     <router-outlet></router-outlet>
   </div>
+  <app-bottom-panel></app-bottom-panel>
 </main>
 <footer>
   <app-footer></app-footer>

@@ -9,7 +9,7 @@ namespace Cafe_API.Infrastructure.Seed
 {
     public class Seed
     {
-        public static async Task SeedAsync(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager,
+        public static async Task SeedFoodAndRoles(RoleManager<AppRole> roleManager,
             DataContext context)
         {
             if (await context.Foods.AnyAsync()) return;
@@ -61,6 +61,21 @@ namespace Cafe_API.Infrastructure.Seed
             {
                 await roleManager.CreateAsync(role);
             }
+        }
+
+        public static async Task SeedEmoloyee(UserManager<AppUser> userManager)
+        {
+            var usersInRole = await userManager.GetUsersInRoleAsync("Employee");
+            if (usersInRole.Any()) return;
+
+            var employee = new AppUser
+            {
+                Email = "employee1@cafe.com",
+                UserName = "employee_1"
+            };
+
+            await userManager.CreateAsync(employee, "Pa$$w0rd");
+            await userManager.AddToRolesAsync(employee, new[] { "Employee" });
         }
     }
 }

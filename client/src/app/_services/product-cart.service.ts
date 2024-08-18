@@ -38,6 +38,11 @@ export class ProductCartService {
     localStorage.setItem('cartItems', JSON.stringify(this.cartItemsSubject.value));
   }
 
+  clearCart() {
+    this.cartItemsSubject.next([]);
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItemsSubject.value));
+  }
+
   increaseQuantity(itemId: number): void {
     const currentItems = this.cartItemsSubject.value;
     const updatedItems = currentItems.map(item => {
@@ -68,26 +73,5 @@ export class ProductCartService {
     return this.cartItems$.pipe(
       map(items => items.reduce((total, item) => total + item.price, 0))
     );
-  }
-
-  constructor() {
-    const item1: ProductCartItem = {
-      id: 1,
-      foodItemId: 1,
-      quantity: 1,
-      price: 100,
-      title: "test",
-      imgUrl: "https://kvadratsushi.com/wp-content/uploads/2024/04/piza_fiesta.jpg"
-    };
-    const item2: ProductCartItem = {
-      id: 2,
-      quantity: 1,
-      foodItemId: 2,
-      price: 150,
-      title: "test2",
-      imgUrl: "https://kvadratsushi.com/wp-content/uploads/2024/04/piza_fiesta.jpg"
-    };
-    // this.addToCart(item1);
-    // this.addToCart(item2);
   }
 }

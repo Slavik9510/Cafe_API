@@ -1,6 +1,7 @@
 @import url("https://fonts.cdnfonts.com/css/gilroy-bold");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&family=Roboto&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
 @import "@fortawesome/fontawesome-free/css/all.css";
+@import "variables";
 
 * {
   box-sizing: border-box;
@@ -44,4 +45,53 @@ body {
 p,
 ul {
   line-height: 27px;
+}
+
+.form-input:not([type="checkbox"]) {
+  font-family: inherit;
+  color: $font-color-dark-gray;
+  font-size: 1rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid $table-border;
+  border-radius: 8px;
+  line-height: 27px;
+  &:focus {
+    border-color: $primary-color;
+  }
+}
+
+.validate-input.ng-touched.ng-invalid {
+  box-shadow: inset 2px 0 0 #e2401c;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  line-height: 27px;
+}
+
+.form-button {
+  padding: 1rem;
+  border: none;
+  background-color: $hover-color;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+.button-large {
+  font-size: 1rem;
+  padding: 1.25rem 2.8rem;
+}
+
+.error-message {
+  font-size: 0.7rem;
+  color: $primary-color;
+  margin: 0;
+  position: absolute;
 }

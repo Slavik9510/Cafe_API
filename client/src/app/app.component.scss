@@ -20,3 +20,13 @@ main {
 .footer {
   z-index: 5;
 }
+
+app-bottom-panel {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  app-bottom-panel {
+    display: block;
+  }
+}

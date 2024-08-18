@@ -29,7 +29,7 @@ export class CheckoutComponent implements OnInit {
       "phoneNumber": new FormControl("", Validators.required),
       "city": new FormControl("", Validators.required),
       "address": new FormControl("", Validators.required),
-      "email": new FormControl("", [Validators.required, Validators.email]),
+      "email": new FormControl("", [Validators.email]),
       "additionalInfo": new FormControl(),
     });
 
@@ -65,14 +65,16 @@ export class CheckoutComponent implements OnInit {
 
     const order: Order = {
       customerName: this.orderForm.get('name')?.value,
-      email: this.orderForm.get('email')?.value,
+      email: this.orderForm.get('email')?.value || null,
       phoneNumber: this.orderForm.get('phoneNumber')?.value,
       additionalInfo: this.orderForm.get('additionalInfo')?.value,
       items: orderItems
     };
+    console.log(order);
 
     this.ordersService.placeOrder(order).subscribe({
-      next: (response) => {
+      next: () => {
+        this.cartService.clearCart();
         this.router.navigate(['']);
       },
       error: (error) => {

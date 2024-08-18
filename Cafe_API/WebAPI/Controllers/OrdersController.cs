@@ -2,6 +2,7 @@
 using Cafe_API.Core.Entities;
 using Cafe_API.Core.Interfaces;
 using Cafe_API.WebAPI.DTOs.Orders;
+using Cafe_API.WebAPI.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cafe_API.WebAPI.Controllers
@@ -24,6 +25,8 @@ namespace Cafe_API.WebAPI.Controllers
         public async Task<IActionResult> PlaceNewOrder(OrderDto orderDto)
         {
             var order = _mapper.Map<Order>(orderDto);
+            int? id = User.TryGetUserId();
+            order.CustomerId = id;
             foreach (var item in order.Items)
             {
                 var itemDetails = await _foodRepository.GetFoodItemByIdAsync(item.FoodItemId);

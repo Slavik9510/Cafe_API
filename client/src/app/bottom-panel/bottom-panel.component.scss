@@ -1,0 +1,30 @@
+@import "variables";
+
+.container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 9;
+}
+
+.botton-navigation {
+  background-color: white;
+  display: flex;
+}
+
+.botton-navigation__link {
+  padding: 0.625rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  i.fa-solid {
+    font-size: 1.375rem;
+  }
+  &:not(:last-child) {
+    border-right: 1px solid $table-border;
+  }
+}

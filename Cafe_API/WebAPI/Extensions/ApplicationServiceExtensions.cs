@@ -20,6 +20,7 @@ namespace Cafe_API.WebAPI.Extensions
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IFoodRepository, FoodRepository>();
+            services.AddSignalR();
 
             return services;
         }

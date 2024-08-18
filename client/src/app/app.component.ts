@@ -10,6 +10,9 @@ import { ProductCartComponent } from "./product-cart/product-cart.component";
 import { ProductCartService } from './_services/product-cart.service';
 import { ProductCartItem } from './_models/product-cart-item.model';
 import { CommonModule } from '@angular/common';
+import { BottomPanelComponent } from './bottom-panel/bottom-panel.component';
+import { AccountService } from './_services/account.service';
+import { User } from './_models/user.model';
 
 @Component({
   selector: 'app-root',
@@ -25,16 +28,18 @@ import { CommonModule } from '@angular/common';
     FooterComponent,
     NgxSpinnerModule,
     ProductCartComponent,
-    CommonModule
+    CommonModule,
+    BottomPanelComponent
   ]
 })
 export class AppComponent implements OnInit {
   title = 'Cafe';
 
-  constructor(private cartService: ProductCartService, private router: Router) { }
+  constructor(private cartService: ProductCartService, private accountService: AccountService, private router: Router) { }
 
   ngOnInit(): void {
     this.setCartItems();
+    this.setCurrentUser();
   }
 
   setCartItems() {
@@ -46,7 +51,15 @@ export class AppComponent implements OnInit {
     items.forEach(x => this.cartService.addToCart(x));
   }
 
-  checkoutOpen(): boolean {
+  setCurrentUser() {
+    const userString = localStorage.getItem('user');
+    if (!userString) return;
+
+    const user: User = JSON.parse(userString);
+    this.accountService.setCurrentUser(user);
+  }
+
+  isCheckoutOpen(): boolean {
     return this.router.url === '/checkout';
   }
 }

@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="account-forms">
+        <div class="login-form">
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <div class="login-wrap">
+                    <h2>Увійти</h2>
+                    <div class="inputs">
+                        <div class="login">
+                            <label for="login" class="form-label">Ім'я користувача чи електронна адреса <span
+                                    class="required">*</span></label>
+                            <input type="email" name="" id="login" class="form-input" formControlName="login">
+                            <p class="error-message" *ngIf="loginSubmitted && loginForm.controls['login'].invalid">
+                                Будь-ласка зазначте
+                                коректну email адресу</p>
+                        </div>
+                        <div class="password">
+                            <label for="login" class="form-label">Пароль <span class="required">*</span></label>
+                            <input type="password" name="" id="password" class="form-input" formControlName="password">
+                            <p class="error-message" *ngIf="loginSubmitted && loginForm.controls['password'].invalid">
+                                Будь-ласка зазначте
+                                коректний пароль</p>
+                        </div>
+                    </div>
+                    <button class="form-button button-large">Увійти</button>
+                </div>
+                <div class="login-secondary">
+                    <div>
+                        <input type="checkbox" name="rememberme" id="rememberme">
+                        <label for="rememberme">Запам'ятати</label>
+                    </div>
+                    <a class="lost-password">Забули пароль?</a>
+                </div>
+            </form>
+        </div>
+        <div class="register-form">
+            <form [formGroup]="registerForm" (ngSubmit)="register()">
+                <h2>Зареєструватися</h2>
+                <div class="inputs">
+                    <div class="username">
+                        <label for="register-username" class="form-label">Ім'я користувача <span
+                                class="required">*</span></label>
+                        <input type="text" name="" id="register-username" class="form-input validate-input"
+                            formControlName="username">
+                    </div>
+                    <div class="email">
+                        <label for="register-email" class="form-label">Електронна адреса <span
+                                class="required">*</span></label>
+                        <input type="email" name="" id="register-email" class="form-input validate-input"
+                            formControlName="email">
+                    </div>
+                    <div class="password">
+                        <label for="register-password" class="form-label">Пароль <span class="required">*</span></label>
+                        <input type="password" name="" id="register-password" class="form-input validate-input"
+                            formControlName="password">
+                    </div>
+                </div>
+                <button class="form-button button-large" [disabled]="registerForm.invalid">Зареєструватися</button>
+            </form>
+        </div>
+    </div>
+</div>

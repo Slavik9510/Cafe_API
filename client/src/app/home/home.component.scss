@@ -35,4 +35,14 @@
   font-weight: bold;
   color: #1e1d23;
   text-align: center;
+  margin: 2rem 0;
+}
+
+@media (max-width: 1100px) {
+  app-hot-deals {
+    display: none;
+  }
+  .frequently-bought__title {
+    margin-top: 0;
+  }
 }

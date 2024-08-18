@@ -1,0 +1,76 @@
+@import "variables";
+
+.account-forms {
+  display: flex;
+  padding: 0 2rem;
+}
+
+.login-form,
+.register-form {
+  flex: 1;
+  padding-right: 3rem;
+  h2 {
+    text-align: center;
+    margin: 0;
+    margin-bottom: 0.625rem;
+    font-size: 1.25rem;
+  }
+  input:not([type="checkbox"]),
+  button {
+    width: 100%;
+  }
+}
+
+.login-form {
+  border-right: 1px solid $table-border;
+}
+
+.login-wrap {
+  background-color: #f6f6f6;
+  padding: 3rem;
+  margin-bottom: 2rem;
+}
+
+.login-secondary {
+  display: flex;
+  justify-content: space-between;
+  color: $font-color-dark-gray;
+  .lost-password {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+  }
+}
+
+.register-form {
+  padding-left: 3rem;
+  form {
+    width: 60%;
+    margin: auto;
+  }
+}
+
+.inputs > div {
+  margin-bottom: 1.6785rem;
+}
+
+@media (max-width: 767px) {
+  .account-forms {
+    flex-direction: column;
+    padding: 0 1rem;
+  }
+
+  .login-form,
+  .register-form {
+    padding: 0;
+  }
+
+  .login-form {
+    border: none;
+    margin-bottom: 3rem;
+  }
+
+  .register-form form {
+    width: auto;
+  }
+}

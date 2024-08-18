@@ -73,44 +73,55 @@
                     <div class="contact-list__phone-numers">
                         <span>Телефонуйте та замовляйте:</span>
                         <p>
-                            <a href="">(099) 000-0000</a><br>
-                            <a href="">(099) 000-0000</a><br>
-                            <a href="">(099) 000-0000</a><br>
+                            <a>(099) 000-0000</a><br>
+                            <a>(099) 000-0000</a><br>
+                            <a>(099) 000-0000</a><br>
                         </p>
                     </div>
                 </div>
                 <div class="header-action-group">
                     <div class="header-search">
-                        <a href="">
+                        <a>
                             <i class="fas fa-search" aria-hidden="true"></i>
                         </a>
                     </div>
-                    <div class="header-account">
-                        <a href="">
+                    <div class="header-account" (mouseenter)="removeHide()">
+                        <a>
                             <i class="fa fa-user" aria-hidden="true"></i>
                         </a>
-                        <div class="dropdown account-dropdown">
-                            <div class="account-dropdown__content">
+                        <div class="dropdown account-dropdown" id="account-dropdown">
+                            <div class="account-dropdown__content" *ngIf="user===null;else userLoggedIn">
                                 <div class="login-form-head">
                                     <span class="login-form-title">Увійти</span>
-                                    <span class="pull-right account-dropdown__secondary-action"><a href="">Створити
+                                    <span class="pull-right account-dropdown__secondary-action"><a
+                                            routerLink="/account">Створити
                                             аккаунт</a></span>
                                 </div>
-                                <form action="" class="login-form">
+                                <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login()">
                                     <label for="account-email">Ім'я користувача або адресу електронної пошти <span
                                             class="required">*</span></label>
-                                    <input type="email" name="" id="account-email" placeholder="Ім'я користувача">
+                                    <input type="email" name="" id="account-email" placeholder="Ім'я користувача"
+                                        formControlName="login">
                                     <label for="account-password">Пароль <span class="required">*</span></label>
-                                    <input type="password" name="" id="account-password" placeholder="Пароль">
+                                    <input type="password" name="" id="account-password" placeholder="Пароль"
+                                        formControlName="password">
                                     <button type="submit">УВІЙТИ</button>
                                 </form>
-                                <div class="login-form-bottom account-dropdown__secondary-action"><a href="">Забули
+                                <div class="login-form-bottom account-dropdown__secondary-action"><a>Забули
                                         пароль?</a></div>
                             </div>
+                            <ng-template #userLoggedIn>
+                                <div class="account-dropdown__content user-logged">
+                                    <p class="user-logged__title">Вітаємо, {{user?.username}}!</p>
+                                    <a>Переглянути профіль</a>
+                                    <a>Мої замовлення</a>
+                                    <button (click)="logout()">Вийти</button>
+                                </div>
+                            </ng-template>
                         </div>
                     </div>
                     <div class="header-wishlist">
-                        <a href="">
+                        <a>
                             <i class="fa-solid fa-heart" aria-hidden="true"></i>
                         </a>
                         <span class="count">99</span>
@@ -158,7 +169,7 @@
             </div>
         </div>
 
-        <div class="side-menu" #sideMenu>
+        <div class="side-menu" #sideMenu *ngIf="isMobileMenuVisible" @openClose>
             <a class="close" (click)="closeMenu()">
                 <i class="fa-solid fa-xmark"></i>
             </a>

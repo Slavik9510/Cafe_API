@@ -2,6 +2,7 @@ using Cafe_API.Core.Entities;
 using Cafe_API.Infrastructure.Data;
 using Cafe_API.Infrastructure.Seed;
 using Cafe_API.WebAPI.Extensions;
+using Cafe_API.WebAPI.Hubs;
 using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,6 +34,8 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.MapHub<OrderHub>("hubs/orders");
+
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
 try
@@ -40,7 +43,8 @@ try
     var context = services.GetRequiredService<DataContext>();
     var userManager = services.GetRequiredService<UserManager<AppUser>>();
     var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
-    await Seed.SeedAsync(userManager, roleManager, context);
+    await Seed.SeedFoodAndRoles(roleManager, context);
+    await Seed.SeedEmoloyee(userManager);
 }
 catch (Exception ex)
 {
