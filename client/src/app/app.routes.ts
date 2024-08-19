@@ -11,6 +11,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { productDetailsResolver } from './_resolvers/product-details.resolver';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AccountComponent } from './account/account.component';
+import { OrderManagerComponent } from './order-manager/order-manager.component';
+import { employeeGuard } from './_guards/employee.guard';
 
 const categories = [
     "sushi-and-rols",
@@ -47,5 +49,6 @@ export const routes: Routes = [
     { path: "payment-and-delivery", component: PaymentDeliveryComponent },
     { path: "contacts", component: ContactsComponent },
     { path: "product/:id", component: ProductDetailsComponent, resolve: { productDetails: productDetailsResolver } },
-    { path: "checkout", component: CheckoutComponent }
+    { path: "checkout", component: CheckoutComponent },
+    { path: "order-manager", component: OrderManagerComponent, canActivate: [employeeGuard] },
 ];

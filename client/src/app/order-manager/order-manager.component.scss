@@ -1,0 +1,74 @@
+@import "variables";
+
+.pending-orders {
+  width: 80%;
+  margin: auto;
+}
+
+.order {
+  border-radius: 8px;
+  border: 2px solid $primary-color;
+  padding: 1rem;
+  margin-bottom: 3rem;
+  .title {
+    text-align: center;
+  }
+}
+
+.order-review-table {
+  width: 100%;
+  .product-name > span {
+    color: $font-color-dark-gray;
+  }
+  .order-total-amount {
+    font-size: 1.5rem;
+    color: $primary-color;
+  }
+  tr {
+    td {
+      border-top: 1px solid $table-border;
+    }
+    th,
+    td {
+      line-height: 27px;
+      padding: 0.3rem 0;
+    }
+    th:first-child {
+      text-align: left;
+    }
+    td:nth-child(even),
+    th:nth-child(2) {
+      text-align: right;
+      font-weight: bold;
+    }
+  }
+}
+
+.actions {
+  border-top: 2px solid $font-color-dark-gray;
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+
+  button {
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.process-order {
+  background-color: #008cba;
+}
+
+.approve {
+  background-color: #04aa6d;
+}
+
+.reject {
+  background-color: #f44336;
+}

@@ -63,19 +63,27 @@ namespace Cafe_API.Infrastructure.Seed
             }
         }
 
-        public static async Task SeedEmoloyee(UserManager<AppUser> userManager)
+        public static async Task SeedEmoloyees(UserManager<AppUser> userManager)
         {
             var usersInRole = await userManager.GetUsersInRoleAsync("Employee");
             if (usersInRole.Any()) return;
 
-            var employee = new AppUser
+            var employee1 = new AppUser
             {
                 Email = "employee1@cafe.com",
                 UserName = "employee_1"
             };
+            var employee2 = new AppUser
+            {
+                Email = "employee2@cafe.com",
+                UserName = "employee_2"
+            };
 
-            await userManager.CreateAsync(employee, "Pa$$w0rd");
-            await userManager.AddToRolesAsync(employee, new[] { "Employee" });
+            await userManager.CreateAsync(employee1, "Pa$$w0rd");
+            await userManager.AddToRolesAsync(employee1, new[] { "Employee" });
+
+            await userManager.CreateAsync(employee2, "Pa$$w0rd");
+            await userManager.AddToRolesAsync(employee2, new[] { "Employee" });
         }
     }
 }

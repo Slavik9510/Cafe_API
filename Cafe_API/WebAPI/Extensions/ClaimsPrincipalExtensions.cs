@@ -15,5 +15,14 @@ namespace Cafe_API.WebAPI.Extensions
 
             return null;
         }
+        public static string? TryGetUserName(this ClaimsPrincipal user)
+        {
+            return user.FindFirst(ClaimTypes.Name)?.Value;
+        }
+
+        public static string[] GetUserRoles(this ClaimsPrincipal user)
+        {
+            return user.FindAll(ClaimTypes.Role).Select(x => x.Value).ToArray();
+        }
     }
 }

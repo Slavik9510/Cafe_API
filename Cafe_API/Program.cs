@@ -2,7 +2,7 @@ using Cafe_API.Core.Entities;
 using Cafe_API.Infrastructure.Data;
 using Cafe_API.Infrastructure.Seed;
 using Cafe_API.WebAPI.Extensions;
-using Cafe_API.WebAPI.Hubs;
+using Cafe_API.WebAPI.SignalR;
 using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -44,7 +44,7 @@ try
     var userManager = services.GetRequiredService<UserManager<AppUser>>();
     var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
     await Seed.SeedFoodAndRoles(roleManager, context);
-    await Seed.SeedEmoloyee(userManager);
+    await Seed.SeedEmoloyees(userManager);
 }
 catch (Exception ex)
 {

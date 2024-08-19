@@ -72,6 +72,22 @@ namespace Cafe_API.Core.Mapping
                         Items = orderItems
                     };
                 });
+
+            CreateMap<Order, OrderPendingDto>()
+                .ConvertUsing((order, orderConfirm, context) =>
+                {
+                    return new OrderPendingDto
+                    {
+                        Id = order.Id,
+                        AdditionalInfo = order.AdditionalInfo,
+                        CustomerName = order.CustomerName,
+                        Email = order.Email,
+                        PhoneNumber = order.PhoneNumber,
+                        CreationTime = order.CreationTime,
+                        Status = OrderStatus.Pending,
+                        Items = new List<OrderPendingItemDto>()
+                    };
+                });
         }
     }
 }

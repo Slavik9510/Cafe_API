@@ -114,7 +114,12 @@
                                 <div class="account-dropdown__content user-logged">
                                     <p class="user-logged__title">Вітаємо, {{user?.username}}!</p>
                                     <a>Переглянути профіль</a>
+                                    @if (user!.roles.includes('Customer')) {
                                     <a>Мої замовлення</a>
+                                    }
+                                    @if (user!.roles.includes('Employee')) {
+                                    <a routerLink="/order-manager">Нові замовлення</a>
+                                    }
                                     <button (click)="logout()">Вийти</button>
                                 </div>
                             </ng-template>

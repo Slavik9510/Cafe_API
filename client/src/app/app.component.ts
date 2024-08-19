@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
     this.setCurrentUser();
   }
 
-  setCartItems() {
+  setCartItems(): void {
     const itemsString = localStorage.getItem('cartItems');
     if (!itemsString) return;
 
@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
     items.forEach(x => this.cartService.addToCart(x));
   }
 
-  setCurrentUser() {
+  setCurrentUser(): void {
     const userString = localStorage.getItem('user');
     if (!userString) return;
 
@@ -59,7 +59,8 @@ export class AppComponent implements OnInit {
     this.accountService.setCurrentUser(user);
   }
 
-  isCheckoutOpen(): boolean {
-    return this.router.url === '/checkout';
+  hideCart(): boolean {
+    const hiddenRoutes = ['/checkout', '/order-manager'];
+    return hiddenRoutes.includes(this.router.url);
   }
 }

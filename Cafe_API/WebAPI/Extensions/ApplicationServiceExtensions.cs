@@ -2,6 +2,7 @@
 using Cafe_API.Core.Mapping;
 using Cafe_API.Core.Services;
 using Cafe_API.Infrastructure.Data;
+using Cafe_API.WebAPI.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cafe_API.WebAPI.Extensions
@@ -20,7 +21,9 @@ namespace Cafe_API.WebAPI.Extensions
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IFoodRepository, FoodRepository>();
+            services.AddScoped<IOrdersRepository, OrdersRepository>();
             services.AddSignalR();
+            services.AddSingleton<OrderProgressTracker>();
 
             return services;
         }

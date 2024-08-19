@@ -9,6 +9,7 @@
         public string? Email { get; set; }
         public string? AdditionalInfo { get; set; }
         public DateTime CreationTime { get; set; }
+        public OrderStatus Status { get; set; }
 
         // Navigation properties
         public AppUser Customer { get; set; }

@@ -1,0 +1,46 @@
+<div class="no-orders" *ngIf="pendingOrders.length===0">
+    <p>Замовлень на опрацювання на даний момент немає</p>
+</div>
+
+<div class="pending-orders">
+    <div class="order" *ngFor="let order of pendingOrders">
+        <h2 class="title">Замовлення №{{order.id}}</h2>
+        <p><strong>Ім'я покупця:</strong> {{order.customerName}}</p>
+        <p><strong>Контактний номер телефону:</strong> {{order.phoneNumber}}</p>
+        <p *ngIf="order.email"><strong>Контактна електронна адреса:</strong> {{order.email}}</p>
+        <p *ngIf="order.additionalInfo"><strong>Додаткова інформація:</strong> {{order.additionalInfo}}</p>
+        <table class="order-review-table">
+            <thead>
+                <tr>
+                    <th>Товар</th>
+                    <th>Проміжний підсумок</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of order.items" class="cart-item">
+                    <td class="product-name">{{item.foodTitle}} <span>× {{item.quantity}}</span></td>
+                    <td class="product-total">{{item.price*item.quantity}}₴</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr class="cart-subtotal">
+                    <td><strong>Проміжний підсумок</strong></td>
+                    <td>{{getOrderTotal(order)}}₴</td>
+                </tr>
+                <tr class="delivery">
+                    <td><strong>Доставка</strong></td>
+                    <td></td>
+                </tr>
+                <tr class="order-total">
+                    <td><strong>Загалом</strong></td>
+                    <td class="order-total-amount">{{getOrderTotal(order)}}₴</td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="actions" *ngIf="!isInProgress(order)">
+            <button class="process-order" (click)="processOrder(order.id)">Опрацювати</button>
+            <button class="approve">Прийняти</button>
+            <button class="reject">Відхилити</button>
+        </div>
+    </div>
+</div>

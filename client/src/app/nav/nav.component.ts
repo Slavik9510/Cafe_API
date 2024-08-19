@@ -62,14 +62,6 @@ export class NavComponent {
     );
   }
 
-  private toggleElement(element: ElementRef["nativeElement"]) {
-    if (element.style.maxHeight) {
-      element.style.maxHeight = null;
-    } else {
-      element.style.maxHeight = element.scrollHeight + 'px';
-    }
-  }
-
   isActiveRoute(routes: string[]): boolean {
     return routes.some(route => this.router.url.includes(route));
   }
@@ -121,5 +113,13 @@ export class NavComponent {
   removeHide() {
     const dropdown = document.getElementById('account-dropdown');
     dropdown?.classList.remove('hide-dropdown');
+  }
+
+  private toggleElement(element: ElementRef["nativeElement"]) {
+    if (element.style.maxHeight) {
+      element.style.maxHeight = null;
+    } else {
+      element.style.maxHeight = element.scrollHeight + 'px';
+    }
   }
 }
