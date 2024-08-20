@@ -22,7 +22,7 @@
             return Task.CompletedTask;
         }
 
-        public Task OrderProcessed(string username)
+        public Task ReleaseOrder(string username)
         {
             lock (ProcessingOrders)
             {

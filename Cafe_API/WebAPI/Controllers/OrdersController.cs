@@ -69,7 +69,7 @@ namespace Cafe_API.WebAPI.Controllers
                 };
                 orderConfirmDto.Items.Add(itemDto);
             }
-            await _orderHub.Clients.All.SendAsync("Receive", orderConfirmDto);
+            await _orderHub.Clients.All.SendAsync("NewOrderReceived", orderConfirmDto);
 
             return Ok(order);
         }

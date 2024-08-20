@@ -4,7 +4,12 @@
 
 <div class="pending-orders">
     <div class="order" *ngFor="let order of pendingOrders">
-        <h2 class="title">Замовлення №{{order.id}}</h2>
+        <h2 class="title">Замовлення №{{order.id}}
+            <div class="processing-indicator" *ngIf="isInProgress(order)">
+                <span class="pulse"></span>
+                <span class="text">Замовлення опрацьовується</span>
+            </div>
+        </h2>
         <p><strong>Ім'я покупця:</strong> {{order.customerName}}</p>
         <p><strong>Контактний номер телефону:</strong> {{order.phoneNumber}}</p>
         <p *ngIf="order.email"><strong>Контактна електронна адреса:</strong> {{order.email}}</p>
@@ -37,10 +42,11 @@
                 </tr>
             </tfoot>
         </table>
-        <div class="actions" *ngIf="!isInProgress(order)">
-            <button class="process-order" (click)="processOrder(order.id)">Опрацювати</button>
-            <button class="approve">Прийняти</button>
-            <button class="reject">Відхилити</button>
+        <div class="actions" *ngIf="isActionsActive(order)">
+            <button class="process-order" (click)="processOrder(order.id, OrderStatus.InProgress)"
+                [disabled]="activeOrderId===order.id">Опрацювати</button>
+            <button class="approve" (click)="processOrder(order.id, OrderStatus.Approved)">Прийняти</button>
+            <button class="reject" (click)="processOrder(order.id, OrderStatus.Rejected)">Відхилити</button>
         </div>
     </div>
 </div>

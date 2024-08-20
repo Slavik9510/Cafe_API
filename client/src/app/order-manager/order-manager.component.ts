@@ -18,8 +18,10 @@ export class OrderManagerComponent implements OnInit, OnDestroy {
   private hubUrl = environment.hubUrl;
   private hubConnection?: HubConnection;
   pendingOrders: OrderPending[] = [];
+  activeOrderId: number | undefined;
+  readonly OrderStatus = OrderStatus;
 
-  constructor(private accountService: AccountService, private employeeService: EmployeeService) { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.accountService.currentUser$.subscribe(user => {
@@ -27,9 +29,6 @@ export class OrderManagerComponent implements OnInit, OnDestroy {
         this.createHubConnection(user);
     }
     );
-    this.employeeService.getPendingOrders().subscribe(data => {
-      if (data) this.pendingOrders = data;
-    });
   }
 
   ngOnDestroy(): void {
@@ -46,7 +45,11 @@ export class OrderManagerComponent implements OnInit, OnDestroy {
 
     this.hubConnection.start().catch(error => console.log(error));
 
-    this.hubConnection.on("Receive", pendingOrder => {
+    this.hubConnection.on("GetPendingOrders", orders => {
+      if (orders) this.pendingOrders = orders;
+    });
+
+    this.hubConnection.on("NewOrderReceived", pendingOrder => {
       this.pendingOrders.push(pendingOrder);
     });
 
@@ -54,7 +57,17 @@ export class OrderManagerComponent implements OnInit, OnDestroy {
       const order = this.pendingOrders.find(x => x.id == orderId);
       if (order === undefined) return;
       order.status = OrderStatus.InProgress;
-    })
+    });
+
+    this.hubConnection.on("ReleasedOrder", orderId => {
+      const order = this.pendingOrders.find(x => x.id == orderId);
+      if (order === undefined) return;
+      order.status = OrderStatus.Pending;
+    });
+
+    this.hubConnection.on("OrderProcessed", orderId => {
+      this.pendingOrders = this.pendingOrders.filter(x => x.id !== orderId);
+    });
   }
 
   stopHubConnection(): void {
@@ -65,12 +78,23 @@ export class OrderManagerComponent implements OnInit, OnDestroy {
     return order.items.reduce((total, item) => total + item.price * item.quantity, 0);
   }
 
-  processOrder(orderId: number): void {
-    this.hubConnection?.invoke("ProcessOrder", orderId, OrderStatus.InProgress)
+  processOrder(orderId: number, status: OrderStatus): void {
+    if (status === OrderStatus.InProgress)
+      this.activeOrderId = orderId;
+    else this.activeOrderId = undefined;
+    this.hubConnection?.invoke("ProcessOrder", orderId, status)
       .catch(err => console.error(err));
+  }
+
+  isActionsActive(order: OrderPending): boolean {
+    return this.isProcessedByMe(order) || !this.isInProgress(order) && this.activeOrderId === undefined;
   }
 
   isInProgress(order: OrderPending): boolean {
     return order.status === OrderStatus.InProgress;
+  }
+
+  isProcessedByMe(order: OrderPending): boolean {
+    return this.activeOrderId === order.id;
   }
 }
