@@ -42,17 +42,17 @@ import { ProductCartItem } from '../_models/product-cart-item.model';
       transition('normal <=> hover', animate('300ms ease-in-out'))
     ]),
     trigger('flyInEnterLeave', [
-      state('hidden', style({
+      state('false', style({
         visibility: 'hidden',
         transform: 'translateY(50px)',
         opacity: 0
       })),
-      state('visible', style({
+      state('true', style({
         visibility: 'visible',
         transform: 'translateY(0)',
         opacity: 1
       })),
-      transition('hidden <=> visible', animate('300ms ease-in-out'))
+      transition('false <=> true', animate('300ms ease-in-out'))
     ])
   ],
   imports: [FormsModule, NgFor, NgIf, ProductsListComponent, ScrollSpyDirective, NgClass, RouterLink]
@@ -65,6 +65,7 @@ export class ProductDetailsComponent implements OnInit {
   priceFade: boolean = false;
   currentPrice!: number;
   similarProducts: ProductCard[] | undefined;
+  isBottomPanelVisible: boolean = false;
 
   @ViewChild('productDescription') productDescription: ElementRef | undefined;
   @ViewChild('similarProductsElement') similarProductsElement!: ElementRef;
@@ -155,6 +156,17 @@ export class ProductDetailsComponent implements OnInit {
       quantity: this.itemQuantity
     };
     this.cartService.addToCart(item);
+  }
+
+  onVisibilityChanged($event: boolean) {
+    this.isBottomPanelVisible = $event;
+  }
+
+  calculateOffset(): number {
+    if (this.product.foodItems.length > 1) {
+      return 130;
+    }
+    return 300;
   }
 
   prevMouseEnter() {

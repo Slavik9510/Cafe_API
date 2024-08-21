@@ -99,7 +99,7 @@ namespace Cafe_API.WebAPI.Controllers
             var others = await _foodRepository.FindAsync(x => x.Id != id && x.Category == product.Category);
 
             if (quantity > others.Count())
-                return BadRequest($"Quantity is too large, max possible is {others.Count()}");
+                quantity = others.Count();
 
             others = others.OrderBy(x => x.Ingredients.Intersect(product.Ingredients).Count()).Take(quantity);
 

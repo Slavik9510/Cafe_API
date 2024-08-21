@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
 
 @Directive({
   selector: '[appScrollSpy]',
@@ -7,6 +7,7 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 export class ScrollSpyDirective {
   @Input() observableElement!: HTMLElement;
   @Input() offset: number = 0;
+  @Output() visibilityChanged: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private elementToShow: ElementRef<any>) { }
 
@@ -17,8 +18,10 @@ export class ScrollSpyDirective {
 
     if (bounding.bottom >= this.offset) {
       this.elementToShow.nativeElement.style.visibility = 'hidden';
+      this.visibilityChanged.emit(false);
     } else {
       this.elementToShow.nativeElement.style.visibility = 'visible';
+      this.visibilityChanged.emit(true);
     }
   }
 }

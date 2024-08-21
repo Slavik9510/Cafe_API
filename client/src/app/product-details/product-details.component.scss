@@ -312,16 +312,17 @@ button {
 
 .bottom-panel {
   display: flex;
-  visibility: hidden;
   justify-content: space-between;
   padding: 0.7rem 1.5rem;
   position: fixed;
   width: 100%;
   bottom: 0;
+  left: 0;
   background-color: white;
   height: 12vh;
   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.1);
-  z-index: 10;
+  z-index: 100;
+  visibility: hidden;
 
   .product-info {
     display: flex;

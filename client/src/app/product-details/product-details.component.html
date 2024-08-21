@@ -96,8 +96,9 @@
     </div>
 </div>
 
-<div class="bottom-panel" #bottomPanel appScrollSpy [observableElement]="productDescription" [offset]="130"
-    [@flyInEnterLeave]="bottomPanel.style.visibility">
+<div class="bottom-panel" #bottomPanel appScrollSpy [observableElement]="productDescription"
+    [offset]="calculateOffset()" (visibilityChanged)="onVisibilityChanged($event)"
+    [@flyInEnterLeave]="isBottomPanelVisible">
     <div class="product-info">
         <img src="https://kvadratsushi.com/wp-content/uploads/2024/04/pizza_halapenio.jpg" alt="">
         <div class="selected-option">
